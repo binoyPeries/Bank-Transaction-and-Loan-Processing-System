@@ -29,6 +29,13 @@ const createSavingsAccount = async (request, response) => {
         });
     }
     try {
+        console.log(request.body.minimum_balance);
+        console.log(request.body.minimum_balance[parseInt(request.body.savings_plan_id) - 1]);
+        if (parseFloat(request.body.minimum_balance[parseInt(request.body.savings_plan_id) - 1]) > parseFloat(request.body.bank_balance)) {
+            return response.status(400).render('400', {
+                err_msg: "Your bank balance must be greater than the minimum balance of the plan you selected"
+            });
+        }
         await Employee.enterSavingsAccount(_.pick(request.body, ["branch_id", "customer_id", "started_date", "bank_balance", "no_of_withdrawals_remaining", "savings_plan_id", "max_withdrawal_limit", "source_of_funds"]));
     } catch (error) {
         return response.status(500).render('500', {

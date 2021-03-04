@@ -17,7 +17,7 @@
                     <div class="card-header-secondary-text">Mineski Bank - Seychelles </div>
                     <div class="card-header-title">Savings Accounts</div>
                     </div>
-                <div class="card-body" style="height:400px; overflow-y:auto;">
+                <div class="card-body" style="height:300px; overflow-y:auto;">
         <%if (accounts.length==0){%>
          <h5 style="color:#ff1744; "> You do not have any savings accounts.
             <br> Please visit your nearest branch to open a savings account. </h5>
@@ -26,14 +26,16 @@
                    
                      <h3><%= accounts[i].savings_account_id  %></h3>
                      <br>
-                     Branch Name:<%= accounts[i].branch_name  %>
+                     Branch Name : <%= accounts[i].branch_name  %>
                      <br>
-                     Bank Balance: Rs. <%= accounts[i].bank_balance  %>
+                     Bank Balance : Rs. <%= accounts[i].bank_balance  %>
                      <br>
-                     Plan Name:<%= accounts[i].plan_name  %>
+                     Plan Name : <%= accounts[i].plan_name  %>
                      <br>
-                     Remaining number of withdrawals for the month: <%= accounts[i].no_of_withdrawals_remaining  %>
+                     Remaining number of withdrawals for the month : <%= accounts[i].no_of_withdrawals_remaining  %>
                      <br>
+                    Maximum withdrawal limit : <%= accounts[i].max_withdrawal_limit  %>
+                    <br>
 
                      <br>
                      <br>

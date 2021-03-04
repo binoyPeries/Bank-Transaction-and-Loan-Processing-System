@@ -19,7 +19,7 @@
                     <div class="card-header-secondary-text">Mineski Bank - Seychelles </div>
                     <div class="card-header-title">Fixed Deposits</div>
                 </div>
-                <div class="card-body" style="height:400px; overflow-y:auto;">
+                <div class="card-body" style="height:300px; overflow-y:auto;">
         <%if (accounts.length==0){%>
 
         <h5 style="color:#ff1744; "> You do not have any fixed deposits.
@@ -29,18 +29,19 @@
                 <% for(var i=0; i < accounts.length; i++) { %>
                    
                      <h6 style="color: #113F86;"><%= accounts[i].plan_name  %></h6>
-                     Branch Name:<%= accounts[i].branch_name  %>
+                     Branch Name : <%= accounts[i].branch_name  %>
                      <br>
-                     Deposit Amount:<%= accounts[i].deposit_amount  %>
+                     Deposit Amount : <%= accounts[i].deposit_amount  %>
                      <br>
-                     Interest Rate:<%= accounts[i].interest_rate  %>
+                     Interest Rate : <%= accounts[i].interest_rate  %>%
                      <br>
-                     Account Period (in months):<%= accounts[i].account_period_in_months  %>
+                     Account Period (in months) : <%= accounts[i].account_period_in_months  %>
+                     <br>
+                     Linked Savings Account : <%= accounts[i].savings_account_id  %>
                      <br>
                      <br>
                      <br>
-             <%}%>
-        <%}%>
+             <%}%><%}%>
         <br>
         </div>
         <div class="container" style="margin-bottom: 10px;">

@@ -83,6 +83,13 @@ const Withdraw = async (req, res) => {
         });
         }
     } 
+    else if(limit - 1 < 0){
+        console.log("No withdrawals remaining for this month");
+        return res.render('400', {
+            err_msg: "No withdrawals remaining for this month"
+        });
+
+    }
     else {
         console.log("Insufficient bank balance");
         return res.render('400', {

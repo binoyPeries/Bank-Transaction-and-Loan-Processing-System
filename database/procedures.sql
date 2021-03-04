@@ -377,56 +377,6 @@ BEGIN
   END IF;
 END$$
 
--- Money Withdrawal From Checking Account--
-
--- DELIMITER $$
--- CREATE OR REPLACE PROCEDURE `checking_account_money_withdrawal` (
---   IN `date_1` DATE,
---   IN `account_id_1` INT ,
---   IN `withdrawal_amount` decimal(9, 2) )
--- BEGIN
---   DECLARE account_balance decimal(12, 2) DEFAULT 0;
---   SELECT IFNULL(bank_balance,0)
---   INTO   account_balance
---   FROM   checking_account
---   WHERE  checking_account_id= account_id_1;
-  
---   IF account_balance >= withdrawal_amount THEN
---     START TRANSACTION;
-
---       UPDATE checking_account
---       SET bank_balance = account_balance - withdrawal_amount
---       WHERE checking_account_id = account_id_1;
---       INSERT INTO withdrawal (date, account_id,amount) VALUES(date_1,account_id_1,withdrawal_amount);
-
---     COMMIT;
---   END IF;
--- END$$
-
--- -- Money Deposit Into Checking Account--
-
--- DELIMITER $$
--- CREATE OR REPLACE PROCEDURE `checking_account_money_deposit` (
---   IN `date_1` DATE,
---   IN `account_id_1` INT ,
---   IN `deposit_amount` decimal(9, 2) )
--- BEGIN
---   DECLARE account_balance decimal(12, 2) DEFAULT 0;
---   SELECT IFNULL(bank_balance,0)
---   INTO   account_balance
---   FROM   checking_account
---   WHERE  checking_account_id= account_id_1;
-  
---     START TRANSACTION;
-
---       UPDATE checking_account
---       SET bank_balance = account_balance + deposit_amount
---       WHERE checking_account_id = account_id_1;
---       INSERT INTO withdrawal (date, account_id,amount) VALUES(date_1,account_id_1,deposit_amount);
-
---     COMMIT;
--- END$$
-
 
 -- Money Deposit Into Savings Account--
 
@@ -460,52 +410,6 @@ BEGIN
         END IF;
 END$$
 
--- Loan installment payments
-
--- DELIMITER $$
--- CREATE OR REPLACE PROCEDURE `pay_loan_installment` (
---   IN `loan_id_1` INT)
--- BEGIN
---   DECLARE installment_status enum('Due', 'Late')	;
---   DECLARE installments_left INT DEFAULT 0;
---   DECLARE date_due DATE;
-
---     DECLARE `_rollback` BOOL DEFAULT 0;
---     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `_rollback` = 1;
-  
---   SELECT status 
---   INTO   installment_status
---   FROM   loan_installment
---   WHERE  loan_id= loan_id_1;
-
---   SELECT remaining_no_of_installments 
---   INTO   installments_left
---   FROM   loan_installment
---   WHERE  loan_id= loan_id_1;
-
---   SELECT due_date 
---   INTO   date_due
---   FROM   loan_installment
---   WHERE  loan_id= loan_id_1;
-  
---     IF installment_status = "Due" AND installments_left>0 THEN
---     set AUTOCOMMIT = 0;
---     START TRANSACTION;
-
---       UPDATE loan_installment
---       SET due_date = date_due + INTERVAL 30 DAY
---       WHERE  `loan_id`= `loan_id_1`;
---       UPDATE loan_installment
---       SET remaining_no_of_installments = installments_left-1
---       WHERE  `loan_id`= `loan_id_1`;
-
---     IF `_rollback` THEN
---             ROLLBACK;
---         ELSE
---             COMMIT;
---         END IF;
---   END IF;
--- END$$
 
 DELIMITER $$
 CREATE OR REPLACE PROCEDURE `update_savings_account_balance`()
@@ -628,50 +532,28 @@ END$$
 
 DELIMITER $$
 CREATE OR REPLACE PROCEDURE `branch_manager_loan_approval` (
-  IN `loan_id_1` INT,
-  IN `loan_installment_1` NUMERIC(12, 2),
-  IN `no_of_installments` INT)
+  IN `loan_id_1` INT)
 BEGIN
-    DECLARE `_rollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `_rollback` = 1;
-    
     set AUTOCOMMIT = 0;
-  
-    START TRANSACTION;
-
       UPDATE normal_loan
       SET status = "Approved"
       WHERE loan_id = loan_id_1;
-
-      IF `_rollback` THEN
-              ROLLBACK;
-          ELSE
-              COMMIT;
-        END IF;
+      COMMIT;
 END$$
 
 DELIMITER $$
 CREATE OR REPLACE PROCEDURE `branch_manager_loan_rejection` (
   IN `loan_id_1` INT)
 BEGIN
-    DECLARE `_rollback` BOOL DEFAULT 0;
-    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET `_rollback` = 1;
-    
-    set AUTOCOMMIT = 0;
-  
-    START TRANSACTION;
-
+      set AUTOCOMMIT = 0;
       UPDATE normal_loan
       SET status = "Rejected"
       WHERE loan_id = loan_id_1;
-
-      IF `_rollback` THEN
-              ROLLBACK;
-          ELSE
-              COMMIT;
-      END IF;
+      COMMIT;
 END$$
 
 
-      INSERT INTO loan_installment (`loan_id`, `due_date`, `loan_installment`, `remaining_no_of_installments`) VALUES
-      (loan_id_1, CURRENT_DATE + INTERVAL 30 DAY,loan_installment_1,no_of_installments);
+
+
+INSERT INTO loan_installment (`loan_id`, `due_date`, `loan_installment`, `remaining_no_of_installments`) VALUES
+    (loan_id_1, CURRENT_DATE + INTERVAL 30 DAY,loan_installment_1,no_of_installments);

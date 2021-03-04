@@ -15,63 +15,72 @@
     </head>
 
     <body class="background">
-        <div  class="card position-absolute top-50 start-50 translate-middle shadow mb-5 bg-white width-auto "  style="margin-top: 200px;">
+        <div class="card position-absolute top-50 start-50 translate-middle shadow mb-5 bg-white width-auto "
+            style="margin-top: 30px;">
             <div class="card-content" style="width: 1000px;">
                 <div class="card-header-blue">
                     <div class="card-header-secondary-text">Mineski Bank - Seychelles </div>
-                    <div class="card-header-title">Online Loan Creation Page</div>
-                    </div>
+                    <div class="card-header-title">Online Loan Application</div>
+                </div>
                 <div class="card-body">
-        <div>
-        <form action="" method="POST" id="onlineLoan">
-            <table class="table table-bordered">
-                <thead>
-                    <th scope="col">Select:</th>
-                    <th scope="col">Plan Name</th>
-                    <th scope="col">Interest Rate</th>
-                    <th scope="col">Period (in Months)</th>
-                </thead>
-                <tbody>
-                    <% for(var i=0; i < plans.length; i++){ %>
-                    <tr>
-                        <td><input type="radio" name="loan_plan_id" id="fixed_deposit_plan_id"
-                                value="<%= plans[i].loan_plan_id %>"></td>
+                    <%if (fids.length==0){%>
+                    
+                    <h5 style="color:#ff1744; "> You need a fixed deposit to apply for an online loan.
+                        <br> Please visit your nearest branch to open a fixed deposit. </h5>
+                    
+                    <%} else{%>
+                    <div>
+                    <form action="" method="POST" id="onlineLoan">
+                        <table class="table table-bordered">
+                            <thead>
+                                <th scope="col">Select:</th>
+                                <th scope="col">Plan Name</th>
+                                <th scope="col">Interest Rate</th>
+                                <th scope="col">Period (in Months)</th>
+                            </thead>
+                            <tbody>
+                                <% for(var i=0; i < plans.length; i++){ %>
+                                <tr>
+                                    <td><input type="radio" name="loan_plan_id" id="fixed_deposit_plan_id"
+                                            value="<%= plans[i].loan_plan_id %>" required></td>
 
-                        <td><input type="text" value="<%= plans[i].plan_name %>" readonly></td>
+                                    <td><input type="text" value="<%= plans[i].plan_name %>" readonly></td>
 
-                        <td><input type="text" value="<%= plans[i].interest_rate%>" name="interest_rate" id="interest_rate" readonly></td>
+                                    <td><input type="text" value="<%= plans[i].interest_rate%>" name="interest_rate" id="interest_rate" readonly></td>
 
-                        <td><input type="text" name="account_period_in_months" id="account_period_in_months"
-                                value="<%= plans[i].loan_period_in_months %>" readonly></td>
-                    </tr>
+                                    <td><input type="text" name="account_period_in_months" id="account_period_in_months"
+                                            value="<%= plans[i].loan_period_in_months %>" readonly></td>
+                                </tr>
 
-                    <% } %>
-                </tbody>
-            </table>
-            <br>
-            <br>
+                                <% } %>
+                            </tbody>
+                        </table>
+                        <br>
+                        <br>
 
-            <div class="text-box-label">Loan ID: <%=nextId%></div>
-            <br>
+                        <div class="text-box-label">Loan ID: <%=nextId%></div>
+                        <br>
 
-            <label class="text-box-label">Customer ID</label>
-                 <input type="text" value="<%= userID %> " name="customer_id" class="form-control w-50" style="border-color: #113F86;" readonly>
-            
-            
-            <label class="text-box-label">Fixed Deposit Account</label>
-            <select class="form-select"  name="fixed_deposit" form="onlineLoan" class="form-control w-50" style="border-color: #113F86;">
-                <% for(var j=0; j< fids.length; j++) {%> 
-                    <% let fd = JSON.stringify(fids[j]) %> 
-                <option value="<%= fd  %>" > <%= fids[j].fixed_deposit_id %> </option>
-                <% } %> 
-              </select>
-              <label class="text-box-label">Loan Amount</label>
-              <input type="text"  name="loan_amount" class="form-control w-25" style="border-color: #113F86;" >
-              <br>
+                        <label class="text-box-label">Customer ID</label>
+                            <input type="text" value="<%= userID %> " name="customer_id" class="form-control w-50" style="border-color: #113F86;" readonly>
+                        
+                        
+                        <label class="text-box-label">Fixed Deposit Account</label>
+                        <select class="form-select"  name="fixed_deposit" form="onlineLoan" class="form-control w-50" style="border-color: #113F86;">
+                            <% for(var j=0; j< fids.length; j++) {%> 
+                                <% let fd = JSON.stringify(fids[j]) %> 
+                            <option value="<%= fd  %>" > <%= fids[j].fixed_deposit_id %> </option>
+                            <% } %> 
+                        </select>
+                        <label class="text-box-label">Loan Amount</label>
+                        <input type="text"  name="loan_amount" class="form-control w-25" style="border-color: #113F86;"  required>
+                        <br>
 
-            <input type="submit"  class="button" style="width: 200px;">
-        </form>
-        </div>
+                        <input type="submit"  class="button" style="width: 200px;">
+                    </form>
+                    </div>
+                    
+        <%}%>
         <br>
         <form action="/" method="GET">
             <input type="submit" value="Home"  class="button" style="width: 200px; background-color:#ff1744;"   >

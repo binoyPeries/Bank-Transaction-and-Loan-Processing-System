@@ -36,7 +36,7 @@
                 <th>Date</th>
                 <th>Initiating Account</th>
                 <th>Receiving Account</th>
-                <th>Transaction Amount</th>
+                <th>Transaction Amount (Rs.)</th>
 
             </thead>
             <tbody>
@@ -54,7 +54,9 @@
                 <%}%>
                 </tbody>
             </table>
-                <%} %>
+                <%} else{%>
+                    <div style="color:#ff1744; font-size: x-large; font-weight: 500;" > No transactions for the selected month </div>
+                    <% } %> 
         <br>
         </div>
         <div class="container" style="margin-bottom: 10px;">

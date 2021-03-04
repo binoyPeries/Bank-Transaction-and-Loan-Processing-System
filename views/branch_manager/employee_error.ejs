@@ -22,6 +22,7 @@
 
 
                     <form action="/branch_manager/employee/create" method="POST">
+                        <div style="color:#ff1744; font-size: x-large; font-weight: 600;" ><%= error_msg %> </div>
                         <label class="text-box-label">Employee name </label>
                         <input type="text" id="full_name" name="full_name" class="form-control w-80"
                         value="<%= post_body.full_name %>"

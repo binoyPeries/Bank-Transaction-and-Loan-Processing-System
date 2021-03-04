@@ -18,7 +18,7 @@
                     <div class="card-header-secondary-text">Mineski Bank - Seychelles </div>
                     <div class="card-header-title">Checking Accounts</div>
                 </div>
-                <div class="card-body" style="height:400px; overflow-y:auto;">
+                <div class="card-body" style="height:300px; overflow-y:auto;">
         <%if (accounts.length==0){%>
       
         <h5 style="color:#ff1744; "> You do not have any checking accounts.
@@ -29,18 +29,23 @@
                    
                      <h3><%= accounts[i].checking_account_id  %></h3>
                      <br>
-                     Branch Name:<%= accounts[i].branch_name  %>
+                     Branch Name : <%= accounts[i].branch_name  %>
                      <br>
-                     Bank Balance: Rs.<%= accounts[i].bank_balance  %>
+                     Bank Balance : Rs.<%= accounts[i].bank_balance  %>
+                     <br>
+                     Started Date : <%=(JSON.stringify(accounts[i].started_date)).toString().substr(1,10) %>
                      <br>
                      <br>
                      <br>
              <%}%>
         <%}%>
         <br>
-        <form action="/" method="GET">
-            <input type="submit" value="Home" class="button" style="background-color: #ff1744; width:200px;">
-        </form>
+        
+        </div>
+        <div class="container" style="margin-bottom: 10px;">
+            <form action="/" method="GET">
+                <input type="submit" value="Home" class="button" style="background-color: #ff1744; width:200px;">
+            </form>
         </div>
         </div>
         </div>

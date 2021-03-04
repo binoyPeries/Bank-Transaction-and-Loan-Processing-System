@@ -25,6 +25,12 @@
                     <div class="card-header-title">Transfer Money</div>
                     </div>
                 <div class="card-body">
+                    <%if (savingsIds.length==0){%>
+                    
+                    <h5 style="color:#ff1744; "> You do not have any accounts viable for money transfers.
+                        <br> Please visit your nearest branch to open an account. </h5>
+                    
+                    <%} else{%>
         <form action="" method="POST" id="transferMoney">
 
             <select class="form-select"  name="initiating_account_id" form="transferMoney" class="form-control w-50" style="border-color: #113F86;">
@@ -44,6 +50,7 @@
             <br>
             <input type="submit" class="button" style=" width:200px;">
         </form>
+        <%}%>
 
         <br>
 

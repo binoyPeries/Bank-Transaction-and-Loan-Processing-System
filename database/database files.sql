@@ -248,7 +248,7 @@ CREATE TABLE `normal_loan` (
     FOREIGN KEY (`loan_id`) REFERENCES loan(`loan_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`branch_id`) REFERENCES branch(`branch_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`customer_id`) REFERENCES customer(`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`loan_plan_id`) REFERENCES loan_plan(`loan_plan_id`) ON DELETE CASCADE ON UPDATE CASCADE -- account id links to ??
+    FOREIGN KEY (`loan_plan_id`) REFERENCES loan_plan(`loan_plan_id`) ON DELETE CASCADE ON UPDATE CASCADE
   );
 
 ALTER TABLE normal_loan AUTO_INCREMENT = 400001;
@@ -274,7 +274,7 @@ CREATE TABLE `online_loan` (
     FOREIGN KEY (`fixed_deposit_id`) REFERENCES fixed_deposit(`fixed_deposit_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`loan_plan_id`) REFERENCES loan_plan(`loan_plan_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`branch_id`) REFERENCES branch(`branch_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CHECK ((`loan_amount` < 500000.00))
+    CHECK ((`loan_amount` <= 500000.00))
   );
 ALTER TABLE online_loan AUTO_INCREMENT = 500001;
 ALTER TABLE online_loan ADD INDEX  (`fixed_deposit_id`);

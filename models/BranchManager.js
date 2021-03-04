@@ -35,6 +35,7 @@ class BranchManager {
                 function (error, results, fields) {
                     if (error) {
                         console.log(result.sql);
+                        console.log(error);
                         reject(error);
                     };
                     console.log(result.sql);

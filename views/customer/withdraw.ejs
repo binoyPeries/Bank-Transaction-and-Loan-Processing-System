@@ -18,6 +18,12 @@
                     <div class="card-header-title">Money Withdrawal Form</div>
                     </div>
                 <div class="card-body">
+                    <%if (accounts.length==0){%>
+                    
+                    <h5 style="color:#ff1744; "> You do not have any accounts viable for money withdrawals.
+                        <br> Please visit your nearest branch to open an account. </h5>
+                    
+                    <%} else{%>
         <form action="" method="post" id="withdraw">
             <label for="account" class="text-box-label">Select your Account</label>
             <select class="form-select"  name='account_id' form="withdraw" class="form-control " style="border-color: #113F86;">
@@ -32,6 +38,8 @@
             <br>
             <input type="submit"  value="Submit" class="button" style="width: 200px;">
         </form>
+                <% } %>
+
         <br>
         <form action="/" method="GET">
             <input type="submit" value="Home" class="button" style="width: 200px; background-color:#ff1744;">

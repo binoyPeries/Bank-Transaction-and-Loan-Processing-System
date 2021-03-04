@@ -76,6 +76,8 @@ class Customer{
                         console.log(result.sql);
                         reject(error);
                     };
+                        console.log(result.sql);
+
                     resolve(console.log("succesful"));
                 }
             )
@@ -84,7 +86,7 @@ class Customer{
 
     static getAllSavingsAccounts(customerID) {
         return new Promise((resolve, reject) => {
-            const result = pool.query("SELECT * FROM all_savings_accounts WHERE customer_id=?",
+            const result = pool.query("SELECT * FROM customer_view_savings_accounts WHERE customer_id=?",
                 [
                     customerID
 
@@ -188,7 +190,7 @@ class Customer{
 
     static getAllCheckingAccounts(customerID) {
         return new Promise((resolve, reject) => {
-            const result = pool.query("SELECT * FROM all_checking_accounts WHERE customer_id=?",
+            const result = pool.query("SELECT * FROM customer_view_checking_accounts WHERE customer_id=?",
                 [
                     customerID
 
@@ -261,7 +263,7 @@ f
 
     static getAllFixedDeposits(customerID) {
         return new Promise((resolve, reject) => {
-            const result = pool.query("SELECT * FROM all_fixed_deposits WHERE customer_id=? AND status=?",
+            const result = pool.query("SELECT * FROM customer_view_fixed_deposits WHERE customer_id=? AND status=?",
                 [
                     customerID,
                     "Open"

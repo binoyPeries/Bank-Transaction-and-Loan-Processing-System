@@ -4,62 +4,70 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
         <link rel="stylesheet" href="/bootstrap.min.css">
-    </head>
-
-    <body>
-    Individual Customer Creation
-    <br>
-    <br>
-    <br>
-
-        <%= error_msg %>
+        <link  rel="stylesheet" href="/custom_style.css">
+        
+    </head  >
+    <body class="background">
+        <div  class="card position-absolute top-50 start-50 translate-middle shadow mb-5 bg-white width-auto " style="margin-top: 200px;" >
+            <div class="card-content" style="width: 800px;">
+                <div class="card-header-blue">
+                    <div class="card-header-secondary-text">Mineski Bank - Seychelles </div>
+                    <div class="card-header-title">Corporate Customer Creation</div>
+                    </div>
+                <div class="card-body">
+        <div style="color:#ff1744; font-size: large; font-weight: 600;" ><%= error_msg %> </div>
         <form action="/employee/customer/individual" method="POST">
 
-            Full Name: <input type="text" id="full_name" name="full_name" value = "<%= post_body.full_name %>" required>
-            <br>
+            <label for="" class="text-box-label"> Full Name </label>
+            <input class="form-control w-50" style="border-color: #113F86;" type="text" id="full_name" name="full_name" value = "<%= post_body.full_name %>" required>
+            
 
-            Address: <input type="text" id="address" name="address" value="<%= post_body.address %>" required>
-            <br>
+            <label for="" class="text-box-label"> Address: </label>
+             <input class="form-control w-50" style="border-color: #113F86;" type="text" id="address" name="address" value="<%= post_body.address %>" required>
+        
 
-            National ID: <input type="text" id="national_ID" name="national_ID" value="<%= post_body.national_ID %>"
+            <label for="" class="text-box-label">National ID: </label>
+             <input class="form-control w-50" style="border-color: #113F86;" type="text" id="national_ID" name="national_ID" value="<%= post_body.national_ID %>"
                 required>
-            <br>
-
-            Date of Birth: <input type="text" id="date_of_birth" name="date_of_birth"
+            
+            <label for="" class="text-box-label"> Date of Birth: </label>
+             <input class="form-control w-50" style="border-color: #113F86;" type="text" id="date_of_birth" name="date_of_birth"
                 value="<%= post_body.date_of_birth %>" required>
-            <br>
-
-            Residential Contact Number:<input type="text" id="residential_contact_no" name="residential_contact_no"
+            
+                <label for="" class="text-box-label"> Residential Contact Number: </label>
+            <input class="form-control w-50" style="border-color: #113F86;" type="text" id="residential_contact_no" name="residential_contact_no"
                 value="<%= post_body.residential_contact_no %>" required>
-            <br>
+            
 
-            Private Contact Number: <input type="text" id="personal_contact_no" name="personal_contact_no"
+            <label for="" class="text-box-label"> Private Contact Number: </label>
+             <input class="form-control w-50" style="border-color: #113F86;" type="text" id="personal_contact_no" name="personal_contact_no"
                 value="<%= post_body.personal_contact_no %>" required>
-            <br>
-
-            Date Joined: <input type="text" id="date_joined" name="date_joined" value="<%= post_body.date_joined %>"
+            
+            <label for="" class="text-box-label">Date Joined: </label>
+             <input class="form-control w-50" style="border-color: #113F86;" type="text" id="date_joined" name="date_joined" value="<%= post_body.date_joined %>"
                 required>
-            <br>
+           
 
-            E-mail Address: <input type="email" id="email" name="email" value="<%= post_body.email %>" required>
-            <br>
+                <label for="" class="text-box-label"> E-mail Address: </label>
+             <input class="form-control w-50" style="border-color: #113F86;" type="email" id="email" name="email" value="<%= post_body.email %>" required>
+            
 
-            Password: <input type="password" id="password" name="password" required>
-            <br>
-
-            Confirm Password: <input type="password" id="confirm_password" name="confirm_password"
+            <label for="" class="text-box-label"> Password: </label>
+           <input class="form-control w-50" style="border-color: #113F86;" type="password" id="password" name="password" required>
+            
+            <label for="" class="text-box-label"> Confirm Password: </label>
+             <input class="form-control w-50" style="border-color: #113F86;" type="password" id="confirm_password" name="confirm_password"
                  required>
-            <br>
-
-            <input type="submit">
+            
+                 <br>
+                 <input type="submit" class="button"  style="width: 200px;">
         </form>
-
+       
         <form action="/" method="GET">
-            <input type="submit" value="Home">
+            <input type="submit" value="Home" class="button"  style="width: 200px;background-color: #ff1744;">
         </form>
-
-    </body>
-
-</html>
+            </div></div></div>
+        
+        </body>
+        </html>

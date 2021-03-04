@@ -54,10 +54,7 @@ const createOnlineLoan = async (request,response) => {
             console.log(error.message);
         }
         return response.status(200).redirect('/');
-
     }
-
-
     
 };
 
